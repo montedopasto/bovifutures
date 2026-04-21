@@ -14,6 +14,22 @@ const contexto = {
     geopolitica: 0.95,
     exportacoes: 1.05
 };
+function calcularProcura(){
+
+    // começamos com base neutra
+    let procura = contexto.consumoBase;
+
+    // aplicar sazonalidade (ex: verão ↑)
+    procura *= contexto.sazonalidade;
+
+    // aplicar rendimento (poder de compra)
+    procura *= contexto.rendimento;
+
+    // aplicar exportações (procura externa)
+    procura *= contexto.exportacoes;
+
+    return procura;
+}
 function guardarPreco(){
 
     const semana = document.getElementById("semana").value;
