@@ -42,9 +42,12 @@ console.log(docSessao.body.innerText);
 
         // KPIs (só atualiza se existir o elemento)
         if(document.getElementById("precoCarcacaPT")){
-            document.getElementById("precoCarcacaPT").innerText =
-                precoCarcaca.toFixed(2) + " €/kg";
-        }
+            if(preco){
+    document.getElementById("precoCarcacaPT").innerText =
+        preco.toFixed(2) + " €/kg";
+}else{
+    document.getElementById("precoCarcacaPT").innerText = "N/D";
+}
 
         if(document.getElementById("precoVivoPT")){
             document.getElementById("precoVivoPT").innerText =
