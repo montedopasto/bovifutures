@@ -4,33 +4,34 @@ async function carregarDados(){
     const data = await res.json();
 
     window.marketData = data;
-const precoCarcaca = data.mercadoCarcaca.preco;
-const rendimento = data.rendimento;
 
-// calcular equivalente vivo (invertido)
-const precoVivoEstimado = precoCarcaca * rendimento;
+    const precoCarcaca = data.mercadoCarcaca.preco;
+    const rendimento = data.rendimento;
 
-// converter novamente para validar lógica
-const convertido = converterVivoParaCarcaca(
-    precoVivoEstimado,
-    rendimento
-);
+    // calcular equivalente vivo
+    const precoVivoEstimado = precoCarcaca * rendimento;
 
-// spread (diferença teórica)
-const spread = precoCarcaca - convertido;
+    // converter novamente para validar lógica
+    const convertido = converterVivoParaCarcaca(
+        precoVivoEstimado,
+        rendimento
     );
 
+    // spread (diferença teórica)
+    const spread = precoCarcaca - convertido;
+
     document.getElementById("precoCarcacaPT").innerText =
-    precoCarcaca.toFixed(2) + " €/kg";
+        precoCarcaca.toFixed(2) + " €/kg";
 
-document.getElementById("precoVivoPT").innerText =
-    precoVivoEstimado.toFixed(2) + " €/kg (estimado)";
+    document.getElementById("precoVivoPT").innerText =
+        precoVivoEstimado.toFixed(2) + " €/kg (estimado)";
 
-document.getElementById("convertido").innerText =
-    convertido.toFixed(2) + " €/kg";
+    document.getElementById("convertido").innerText =
+        convertido.toFixed(2) + " €/kg";
 
-document.getElementById("spread").innerText =
-    spread.toFixed(2) + " €/kg";
+    document.getElementById("spread").innerText =
+        spread.toFixed(2) + " €/kg";
+
 }
 
 carregarDados();
