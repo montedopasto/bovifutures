@@ -49,6 +49,19 @@ function calcularOferta(){
 
     return oferta;
 }
+function calcularPressaoMercado(){
+
+    const procura = calcularProcura();
+    const oferta = calcularOferta();
+
+    // diferença relativa
+    const diferenca = procura - oferta;
+
+    // normalizar (escala suave)
+    const pressao = diferenca / 100;
+
+    return pressao;
+}
 function guardarPreco(){
 
     const semana = document.getElementById("semana").value;
