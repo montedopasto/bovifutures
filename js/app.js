@@ -15,9 +15,12 @@ async function carregarDados(){
         // encontrar links
         const links = [...doc.querySelectorAll("a")];
 
-        const linkSessao = links.find(l => 
-            l.textContent.toLowerCase().includes("sess")
-        );
+        const linksSessao = links.filter(l => 
+    l.textContent.toLowerCase().includes("sess")
+);
+
+// assume que o primeiro é o mais recente
+const linkSessao = linksSessao[0];
 
         const urlSessao = linkSessao.href;
 
