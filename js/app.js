@@ -27,10 +27,21 @@ function carregarGrafico(){
 
     let historico = JSON.parse(localStorage.getItem("precos")) || [];
 
-    const carcaca = historico.filter(d => d.tipo === "carcaca");
-    const vivo = historico.filter(d => d.tipo === "vivo");
+    // ordenar por semana
+    historico.sort((a,b) => a.semana.localeCompare(b.semana));
 
-    const labels = carcaca.map(d => d.semana);
+    // semanas únicas
+    const labels = [...new Set(historico.map(d => d.semana))];
+
+    const carcacaData = labels.map(semana => {
+        const reg = historico.find(d => d.semana === semana && d.tipo === "carcaca");
+        return reg ? reg.valor : null;
+    });
+
+    const vivoData = labels.map(semana => {
+        const reg = historico.find(d => d.semana === semana && d.tipo === "vivo");
+        return reg ? reg.valor : null;
+    });
 
     const ctx = document.getElementById("graficoPrecos");
 
@@ -45,15 +56,17 @@ function carregarGrafico(){
             datasets: [
                 {
                     label: "Carcaça €/kg",
-                    data: carcaca.map(d => d.valor),
+                    data: carcacaData,
                     borderColor: "#00ff88",
-                    tension: 0.3
+                    tension: 0.3,
+                    spanGaps: true
                 },
                 {
                     label: "Vivo €/kg",
-                    data: vivo.map(d => d.valor),
+                    data: vivoData,
                     borderColor: "#3b82f6",
-                    tension: 0.3
+                    tension: 0.3,
+                    spanGaps: true
                 }
             ]
         }
