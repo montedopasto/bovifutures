@@ -1,6 +1,6 @@
 function guardarPreco(){
 
-    const data = document.getElementById("dataSemana").value;
+    const semana = document.getElementById("semana").value;
     const tipo = document.getElementById("tipoPreco").value;
     const valor = parseFloat(document.getElementById("valorPreco").value);
 
