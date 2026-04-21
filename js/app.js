@@ -6,35 +6,76 @@ async function carregarDados(){
     window.marketData = data;
 
     const precoCarcaca = data.mercadoCarcaca.preco;
-    document.getElementById("infoFonte").innerText =
-    data.mercadoCarcaca.nome + " | " +
-    data.mercadoCarcaca.categoria + " | " +
-    data.mercadoCarcaca.data;
     const rendimento = data.rendimento;
 
-    // calcular equivalente vivo
+    // calcular vivo estimado
     const precoVivoEstimado = precoCarcaca * rendimento;
 
-    // converter novamente para validar lógica
-    const convertido = converterVivoParaCarcaca(
-        precoVivoEstimado,
-        rendimento
-    );
-
-    // spread (diferença teórica)
-    const spread = precoCarcaca - convertido;
-
+    // KPI principal
     document.getElementById("precoCarcacaPT").innerText =
         precoCarcaca.toFixed(2) + " €/kg";
 
     document.getElementById("precoVivoPT").innerText =
         precoVivoEstimado.toFixed(2) + " €/kg (estimado)";
 
-    document.getElementById("convertido").innerText =
-        convertido.toFixed(2) + " €/kg";
+    // INFO (topbar)
+    document.getElementById("infoData").innerText =
+        "Atualizado: " + data.mercadoCarcaca.data;
 
-    document.getElementById("spread").innerText =
-        spread.toFixed(2) + " €/kg";
+    document.getElementById("infoFonteKPI").innerText =
+        data.mercadoCarcaca.nome + " | " +
+        data.mercadoCarcaca.categoria;
+
+    // INTELIGÊNCIA DE MERCADO
+    const score = calcularScoreMercado(data.fatores);
+    const leitura = interpretarMercado(score);
+
+    document.getElementById("estadoMercado").innerText = leitura.estado;
+    document.getElementById("scoreMercado").innerText = "Score: " + score;
+    document.getElementById("textoMercado").innerText = leitura.texto;
+
+    // GRÁFICO
+    const ctx = document.getElementById('graficoPrecos');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.historico.datas,
+            datasets: [
+                {
+                    label: 'Carcaça €/kg',
+                    data: data.historico.carcaca,
+                    borderColor: '#00ff88',
+                    backgroundColor: 'rgba(0,255,136,0.1)',
+                    tension: 0.3
+                },
+                {
+                    label: 'Vivo €/kg',
+                    data: data.historico.vivo,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59,130,246,0.1)',
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: { color: '#ccc' }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#aaa' },
+                    grid: { color: '#222' }
+                },
+                y: {
+                    ticks: { color: '#aaa' },
+                    grid: { color: '#222' }
+                }
+            }
+        }
+    });
 
 }
 
