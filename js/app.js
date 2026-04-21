@@ -245,7 +245,7 @@ const previsaoValores = obterPrevisaoArray();
         datasets: [
             {
                 label: "Carcaça €/kg",
-                data: carcacaData.concat(previsaoValores.map(()=>null)),
+                data: carcacaData.concat([null,null,null,null])
                 borderColor: "#00ff88",
                 backgroundColor: "rgba(0,255,136,0.08)",
                 borderWidth: 3,
