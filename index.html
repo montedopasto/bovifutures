@@ -1,117 +1,74 @@
 <!doctype html>
 <html lang="pt-PT">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BoviFutures Monte do Pasto</title>
-  <style>
-    :root{
-      --bg:#f3f7f2;
-      --bg-soft:#e7f0e5;
-      --panel:#ffffff;
-      --panel-2:#f7fbf6;
-      --line:#d9e7d7;
-      --text:#102018;
-      --muted:#607065;
-      --green:#2f9e44;
-      --green-dark:#1e6f31;
-      --green-soft:#dff5e4;
-      --amber:#e89b0c;
-      --amber-soft:#fff2db;
-      --red:#d94841;
-      --red-soft:#fde9e7;
-      --shadow:0 14px 40px rgba(16,32,24,.08);
-      --radius:24px;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 10% 10%, #dff7e4 0, transparent 26%),
-        radial-gradient(circle at 90% 0%, #eef7dc 0, transparent 22%),
-        linear-gradient(180deg,var(--bg),#edf4ec 100%);
-    }
+<title>BoviFutures</title>
 
-    .container{
-      max-width:1480px;
-      margin:0 auto;
-      padding:24px;
-    }
+<link rel="stylesheet" href="css/styles.css">
 
-    .hero{
-      position:relative;
-      overflow:hidden;
-      background:linear-gradient(135deg,#214d2f 0%,#2f9e44 50%,#78c26d 100%);
-      color:#fff;
-      border-radius:34px;
-      padding:28px;
-      box-shadow:var(--shadow);
-      margin-bottom:22px;
-    }
+</head>
+<body>
 
-    .hero::before,
-    .hero::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      background:rgba(255,255,255,.08);
-      pointer-events:none;
-    }
+<div class="container">
 
-    .hero::before{width:280px;height:280px;top:-120px;right:-40px}
-    .hero::after{width:180px;height:180px;bottom:-80px;left:20%}
+    <!-- HEADER -->
+    <header class="hero">
+        <h1>BoviFutures</h1>
+        <p>Monitorização de mercado de bovinos vivos e carcaças</p>
+    </header>
 
-    .hero-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      position:relative;
-      z-index:1;
-    }
+    <!-- KPI CARDS -->
+    <section class="kpis">
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.12);
-      backdrop-filter:blur(8px);
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
+        <div class="card">
+            <h3>Preço Vivo PT</h3>
+            <div id="precoVivoPT">--</div>
+        </div>
 
-    h1{
-      margin:14px 0 10px;
-      font-size:clamp(30px,4vw,48px);
-      line-height:1.03;
-    }
+        <div class="card">
+            <h3>Preço Carcaça PT</h3>
+            <div id="precoCarcacaPT">--</div>
+        </div>
 
-    .hero p{
-      margin:0;
-      max-width:900px;
-      color:rgba(255,255,255,.92);
-      line-height:1.6;
-      font-size:15px;
-    }
+        <div class="card">
+            <h3>Vivo → Carcaça</h3>
+            <div id="convertido">--</div>
+        </div>
 
-    .hero-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+        <div class="card">
+            <h3>Spread</h3>
+            <div id="spread">--</div>
+        </div>
 
-    .btn{
-      border:none;
-      border-radius:14px;
-      padding:12px 16px;
-      font-weight:700;
-      cursor:pointer;
-      transition:.2s transform,.2
+    </section>
+
+    <!-- SIMULADOR -->
+    <section class="simulator">
+
+        <h2>Simulador</h2>
+
+        <label>Nº Animais</label>
+        <input id="animais" type="number" value="30">
+
+        <label>Peso Vivo Médio (kg)</label>
+        <input id="peso" type="number" value="600">
+
+        <label>Rendimento (%)</label>
+        <input id="rendimento" type="number" value="58">
+
+        <button onclick="simular()">Simular</button>
+
+        <div id="resultado"></div>
+
+    </section>
+
+</div>
+
+<script src="js/market-engine.js"></script>
+<script src="js/simulator.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
