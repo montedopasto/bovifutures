@@ -65,3 +65,28 @@ const linkSessao = linksSessao[0];
 }
 
 carregarDados();
+function guardarPreco(){
+
+    const data = document.getElementById("dataSemana").value;
+    const tipo = document.getElementById("tipoPreco").value;
+    const valor = parseFloat(document.getElementById("valorPreco").value);
+
+    if(!data || !valor){
+        alert("Preenche todos os campos");
+        return;
+    }
+
+    let historico = JSON.parse(localStorage.getItem("precos")) || [];
+
+    historico.push({
+        data: data,
+        tipo: tipo,
+        valor: valor
+    });
+
+    localStorage.setItem("precos", JSON.stringify(historico));
+
+    alert("Preço guardado com sucesso!");
+
+    carregarGrafico();
+}
