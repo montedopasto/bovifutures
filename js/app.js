@@ -2,7 +2,7 @@ const contexto = {
     // PROCURA
     consumoBase: 100,
     sazonalidade: 1.05,
-    rendimento: 0.95,
+    rendimento: 0.58,
 
     // OFERTA
     producao: 1.00,
