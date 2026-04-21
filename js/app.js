@@ -163,8 +163,9 @@ function guardarPreco(){
 
     alert("Preço guardado com sucesso!");
 
-    carregarGrafico();
+   carregarGrafico();
 atualizarKPIs();
+calcularPrevisao();
 }
 function carregarGrafico(){
 
@@ -276,6 +277,7 @@ function carregarGrafico(){
 window.onload = function(){
     carregarGrafico();
     atualizarKPIs();
+    calcularPrevisao();
 };
 function atualizarKPIs(){
 
