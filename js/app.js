@@ -4,7 +4,13 @@ async function carregarDados(){
     const data = await res.json();
 
     window.marketData = data;
+const score = calcularScoreMercado(data.fatores);
+const leitura = interpretarMercado(score);
 
+document.getElementById("estadoMercado").innerText = leitura.estado;
+document.getElementById("scoreMercado").innerText = "Score: " + score;
+
+document.getElementById("textoMercado").innerText = leitura.texto;
     const convertido = converterVivoParaCarcaca(
         data.precoVivoPT,
         data.rendimento
