@@ -366,7 +366,7 @@ const labels = baseLabels.concat(previsaoLabels);
 window.onload = function(){
     carregarGrafico();
     atualizarKPIs();
-    calcularPrevisao();
+    renderPrevisao();
 };
 function atualizarKPIs(){
 
