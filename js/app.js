@@ -262,48 +262,66 @@ const previsaoValores = obterPrevisaoArray();
     data: {
         labels: labels,
         datasets: [
-            {
-                label: "Carcaça €/kg",
-                data: carcacaData.concat([null,null,null,null]),
-                borderColor: "#00ff88",
-                backgroundColor: "rgba(0,255,136,0.08)",
-                borderWidth: 3,
-                tension: 0.4,
-                pointRadius: 2,
-                pointHoverRadius: 6,
-                fill: true,
-                spanGaps: true
-            },
-            ,
-{
-    label: "Previsão Vivo €/kg",
-    data: new Array(baseLabels.length).fill(null).concat(previsaoVivo),
-    borderColor: "#60a5fa",
-    borderDash: [4,4],
-    borderWidth: 2,
-    tension: 0.4,
-    pointRadius: 0
-},
-            {
-                label: "Previsão €/kg",
-                data: new Array(baseLabels.length).fill(null).concat(previsaoValores),
-                borderColor: "#facc15",
-                borderDash: [6,6],
-                borderWidth: 2,
-                tension: 0.4,
-                pointRadius: 0
-            }
-            ,
-{
-    label: "Previsão Vivo €/kg",
-    data: new Array(vivoData.length).fill(null).concat(previsaoVivo),
-    borderColor: "#60a5fa",
-    borderDash: [4,4],
-    borderWidth: 2,
-    tension: 0.4,
-    pointRadius: 0
-}
-        ]
+
+    // ======================
+    // HISTÓRICO CARCAÇA
+    // ======================
+    {
+        label: "Carcaça €/kg",
+        data: carcacaData.concat([null,null,null,null]),
+        borderColor: "#00ff88",
+        backgroundColor: "rgba(0,255,136,0.08)",
+        borderWidth: 3,
+        tension: 0.4,
+        pointRadius: 2,
+        pointHoverRadius: 6,
+        fill: true,
+        spanGaps: true
+    },
+
+    // ======================
+    // HISTÓRICO VIVO
+    // ======================
+    {
+        label: "Vivo €/kg",
+        data: vivoData.concat([null,null,null,null]),
+        borderColor: "#3b82f6",
+        backgroundColor: "rgba(59,130,246,0.08)",
+        borderWidth: 3,
+        tension: 0.4,
+        pointRadius: 2,
+        pointHoverRadius: 6,
+        fill: true,
+        spanGaps: true
+    },
+
+    // ======================
+    // PREVISÃO CARCAÇA
+    // ======================
+    {
+        label: "Previsão €/kg",
+        data: new Array(baseLabels.length).fill(null).concat(previsaoValores),
+        borderColor: "#facc15",
+        borderDash: [6,6],
+        borderWidth: 2,
+        tension: 0.4,
+        pointRadius: 0
+    },
+
+    // ======================
+    // PREVISÃO VIVO
+    // ======================
+    {
+        label: "Previsão Vivo €/kg",
+        data: new Array(baseLabels.length).fill(null).concat(previsaoVivo),
+        borderColor: "#60a5fa",
+        borderDash: [4,4],
+        borderWidth: 2,
+        tension: 0.4,
+        pointRadius: 0
+    }
+
+]
     },
     options: {
         responsive: true,
