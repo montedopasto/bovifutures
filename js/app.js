@@ -6,6 +6,10 @@ async function carregarDados(){
     window.marketData = data;
 
     const precoCarcaca = data.mercadoCarcaca.preco;
+    document.getElementById("infoFonte").innerText =
+    data.mercadoCarcaca.nome + " | " +
+    data.mercadoCarcaca.categoria + " | " +
+    data.mercadoCarcaca.data;
     const rendimento = data.rendimento;
 
     // calcular equivalente vivo
