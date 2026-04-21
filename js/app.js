@@ -30,7 +30,7 @@ function carregarGrafico(){
     const carcaca = historico.filter(d => d.tipo === "carcaca");
     const vivo = historico.filter(d => d.tipo === "vivo");
 
-    const labels = carcaca.map(d => d.data);
+    const labels = carcaca.map(d => d.semana);
 
     const ctx = document.getElementById("graficoPrecos");
 
