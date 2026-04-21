@@ -30,6 +30,25 @@ function calcularProcura(){
 
     return procura;
 }
+function calcularOferta(){
+
+    // base neutra
+    let oferta = 100;
+
+    // produção global
+    oferta *= contexto.producao;
+
+    // ritmo de abates (mais abates = mais oferta)
+    oferta *= contexto.abates;
+
+    // custo da ração (quanto mais caro, menos oferta real)
+    oferta *= (2 - contexto.custoRacao);
+
+    // impacto de doenças (reduz oferta)
+    oferta *= contexto.doencas;
+
+    return oferta;
+}
 function guardarPreco(){
 
     const semana = document.getElementById("semana").value;
