@@ -25,3 +25,8 @@
     "comercio": 65
   }
 }
+"historico": {
+  "datas": ["Jan", "Fev", "Mar", "Abr", "Mai"],
+  "carcaca": [6.80, 7.00, 7.20, 7.10, 7.40],
+  "vivo": [3.90, 4.05, 4.15, 4.10, 4.29]
+}
