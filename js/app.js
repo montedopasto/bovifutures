@@ -178,9 +178,11 @@ function carregarGrafico(){
     let labels = [...new Set(historico.map(d => d.semana))];
 
 // adicionar semanas futuras
+const baseLabels = [...new Set(historico.map(d => d.semana))];
+
 const previsaoLabels = ["W+1","W+2","W+3","W+4"];
 
-labels = labels.concat(previsaoLabels);
+const labels = baseLabels.concat(previsaoLabels);
 
     const carcacaData = labels.map(semana => {
         const reg = historico.find(d => d.semana === semana && d.tipo === "carcaca");
@@ -245,7 +247,7 @@ const previsaoValores = obterPrevisaoArray();
         datasets: [
             {
                 label: "Carcaça €/kg",
-                data: carcacaData.concat([null,null,null,null])
+                data: carcacaData.concat([null,null,null,null]),
                 borderColor: "#00ff88",
                 backgroundColor: "rgba(0,255,136,0.08)",
                 borderWidth: 3,
