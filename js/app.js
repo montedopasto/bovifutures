@@ -288,7 +288,7 @@ const previsaoValores = obterPrevisaoArray();
             },
             {
                 label: "Previsão €/kg",
-                data: new Array(carcacaData.length).fill(null).concat(previsaoValores),
+                data: new Array(baseLabels.length).fill(null).concat(previsaoValores),
                 borderColor: "#facc15",
                 borderDash: [6,6],
                 borderWidth: 2,
