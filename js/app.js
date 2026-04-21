@@ -4,21 +4,20 @@ async function carregarDados(){
     const data = await res.json();
 
     window.marketData = data;
-const score = calcularScoreMercado(data.fatores);
-const leitura = interpretarMercado(score);
+const precoCarcaca = data.mercadoCarcaca.preco;
+const rendimento = data.rendimento;
 
-document.getElementById("estadoMercado").innerText = leitura.estado;
-document.getElementById("scoreMercado").innerText = "Score: " + score;
+// calcular equivalente vivo (invertido)
+const precoVivoEstimado = precoCarcaca * rendimento;
 
-document.getElementById("textoMercado").innerText = leitura.texto;
-    const convertido = converterVivoParaCarcaca(
-        data.precoVivoPT,
-        data.rendimento
-    );
+// converter novamente para validar lógica
+const convertido = converterVivoParaCarcaca(
+    precoVivoEstimado,
+    rendimento
+);
 
-    const spread = calcularSpread(
-        data.precoCarcacaPT,
-        convertido
+// spread (diferença teórica)
+const spread = precoCarcaca - convertido;
     );
 
     document.getElementById("precoVivoPT").innerText =
