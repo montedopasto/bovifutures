@@ -297,3 +297,29 @@ function renderPrevisao(){
 
     document.getElementById("previsaoFutura").innerHTML = html;
 }
+function atualizarHeaderTempo(){
+
+    const agora = new Date();
+
+    // =====================
+    // DATA
+    // =====================
+    const opcoes = { day: '2-digit', month: 'long', year: 'numeric' };
+    const dataFormatada = agora.toLocaleDateString('pt-PT', opcoes);
+
+    document.getElementById("infoData").innerText = dataFormatada;
+
+    // =====================
+    // HORA
+    // =====================
+    const hora = agora.toLocaleTimeString('pt-PT');
+    document.getElementById("infoHora").innerText = hora;
+
+    // =====================
+    // SEMANA ISO
+    // =====================
+    const semana = getWeekNumber(agora);
+    const ano = agora.getFullYear();
+
+    document.getElementById("infoSemana").innerText = `Semana ${ano}-W${semana}`;
+}
