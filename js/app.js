@@ -257,7 +257,7 @@ const previsaoValores = obterPrevisaoArray();
             },
             {
                 label: "Vivo €/kg",
-                data: vivoData.concat(previsaoValores.map(()=>null)),
+                data: vivoData.concat([null,null,null,null]),
                 borderColor: "#3b82f6",
                 backgroundColor: "rgba(59,130,246,0.08)",
                 borderWidth: 3,
