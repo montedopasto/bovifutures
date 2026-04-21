@@ -62,6 +62,84 @@ function calcularPressaoMercado(){
 
     return pressao;
 }
+function calcularPrevisao(){
+
+    let historico = JSON.parse(localStorage.getItem("precos")) || [];
+
+    const carcaca = historico
+        .filter(d => d.tipo === "carcaca")
+        .sort((a,b) => a.semana.localeCompare(b.semana));
+
+    if(carcaca.length < 4){
+        document.getElementById("previsaoFutura").innerText =
+            "Dados insuficientes para previsão";
+        return;
+    }
+
+    // =========================
+    // 1. TENDÊNCIA (INÉRCIA)
+    // =========================
+
+    const ultimos = carcaca.slice(-4);
+
+    let variacoes = [];
+
+    for(let i=1;i<ultimos.length;i++){
+        variacoes.push(ultimos[i].valor - ultimos[i-1].valor);
+    }
+
+    const tendencia =
+        variacoes.reduce((a,b)=>a+b,0) / variacoes.length;
+
+    // =========================
+    // 2. PRESSÃO DE MERCADO
+    // =========================
+
+    const pressao = calcularPressaoMercado();
+
+    // =========================
+    // 3. CHOQUE EXTERNO
+    // =========================
+
+    const choque = (contexto.geopolitica - 1) * 0.5;
+
+    // =========================
+    // 4. PREVISÃO
+    // =========================
+
+    let valor = ultimos[ultimos.length - 1].valor;
+
+    let previsao = [];
+
+    for(let i=1;i<=4;i++){
+
+        valor +=
+            (tendencia * 0.6) +   // inércia
+            (pressao * 0.4) +     // mercado
+            choque;               // externo
+
+        previsao.push({
+            semana: "W+" + i,
+            valor: valor
+        });
+    }
+
+    // =========================
+    // 5. RENDER
+    // =========================
+
+    let html = "";
+
+    previsao.forEach(p=>{
+        html += `
+            <div style="margin-bottom:6px;">
+                ${p.semana} → <b>${p.valor.toFixed(2)} €/kg</b>
+            </div>
+        `;
+    });
+
+    document.getElementById("previsaoFutura").innerHTML = html;
+}
 function guardarPreco(){
 
     const semana = document.getElementById("semana").value;
