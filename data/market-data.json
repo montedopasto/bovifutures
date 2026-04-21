@@ -1,6 +1,19 @@
 {
-  "precoVivoPT": 2.80,
-  "precoCarcacaPT": 5.40,
+  "mercadoCarcaca": {
+    "nome": "Bolsa do Montijo",
+    "categoria": "Novilho-A",
+    "unidade": "€/kg carcaça",
+    "preco": 7.40,
+    "data": "2026-04-18",
+    "fonte": "GPP/SIMA"
+  },
+
+  "mercadoVivo": {
+    "nome": "Estimado a partir da carcaça",
+    "unidade": "€/kg vivo",
+    "preco": null
+  },
+
   "rendimento": 0.58,
 
   "fatores": {
