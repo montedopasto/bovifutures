@@ -237,7 +237,41 @@ const previsaoValores = obterPrevisaoArray();
     type: "line",
     data: {
         labels: labels,
-         label: "Vivo €/kg",
+        datasets: [
+            {
+                label: "Carcaça €/kg",
+                data: carcacaData.concat(previsaoValores.map(()=>null)),
+                borderColor: "#00ff88",
+                backgroundColor: "rgba(0,255,136,0.08)",
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 2,
+                pointHoverRadius: 6,
+                fill: true,
+                spanGaps: true
+            },
+            {
+                label: "Vivo €/kg",
+                data: vivoData.concat(previsaoValores.map(()=>null)),
+                borderColor: "#3b82f6",
+                backgroundColor: "rgba(59,130,246,0.08)",
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 2,
+                pointHoverRadius: 6,
+                fill: true,
+                spanGaps: true
+            },
+            {
+                label: "Previsão €/kg",
+                data: new Array(carcacaData.length).fill(null).concat(previsaoValores),
+                borderColor: "#facc15",
+                borderDash: [6,6],
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0
+            }
+        ]
     },
     options: {
         responsive: true,
@@ -252,9 +286,7 @@ const previsaoValores = obterPrevisaoArray();
             legend: {
                 labels: {
                     color: "#888",
-                    font: {
-                        size: 12
-                    }
+                    font: { size: 12 }
                 }
             },
             tooltip: {
@@ -269,21 +301,12 @@ const previsaoValores = obterPrevisaoArray();
 
         scales: {
             x: {
-                ticks: {
-                    color: "#555",
-                    maxRotation: 0
-                },
-                grid: {
-                    color: "rgba(255,255,255,0.03)"
-                }
+                ticks: { color: "#555" },
+                grid: { color: "rgba(255,255,255,0.03)" }
             },
             y: {
-                ticks: {
-                    color: "#555"
-                },
-                grid: {
-                    color: "rgba(255,255,255,0.03)"
-                }
+                ticks: { color: "#555" },
+                grid: { color: "rgba(255,255,255,0.03)" }
             }
         }
     }
