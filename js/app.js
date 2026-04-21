@@ -24,7 +24,13 @@ const linkSessao = links.find(l =>
 const urlSessao = linkSessao.href;
 
 console.log("Sessão encontrada:", urlSessao);
+const resSessao = await fetch(proxy + encodeURIComponent(urlSessao));
+const htmlSessao = await resSessao.text();
 
+const docSessao = parser.parseFromString(htmlSessao, "text/html");
+
+// ver conteúdo para perceber estrutura
+console.log(docSessao.body.innerText);
         console.log("DATA:", data); // DEBUG
 
         window.marketData = data;
