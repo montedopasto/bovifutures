@@ -183,7 +183,7 @@ const previsaoLabels = ["W+1","W+2","W+3","W+4"];
 // eixo completo
 const labels = baseLabels.concat(previsaoLabels);
 
-    const carcacaData = labels.map(semana => {
+    const carcacaData = baseLabels.map(semana => {
         const reg = historico.find(d => d.semana === semana && d.tipo === "carcaca");
         return reg ? reg.valor : null;
     });
