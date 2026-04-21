@@ -113,10 +113,16 @@ function calcularPrevisao(){
 
     for(let i=1;i<=4;i++){
 
-        valor +=
-            (tendencia * 0.6) +   // inércia
-            (pressao * 0.4) +     // mercado
-            choque;               // externo
+        // regressão à média (preço justo ~ 7.80 por exemplo)
+const precoJusto = 7.8;
+
+const regressao = (precoJusto - valor) * 0.2;
+
+valor +=
+    (tendencia * 0.4) +
+    (pressao * 0.3) +
+    choque +
+    regressao;
 
         previsao.push({
             semana: "W+" + i,
