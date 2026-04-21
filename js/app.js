@@ -216,7 +216,7 @@ labels = labels.concat(previsaoLabels);
             },
             {
                 label: "Vivo €/kg",
-                data: vivoData,
+                data: vivoData.concat([null,null,null,null]),
                 borderColor: "#3b82f6",
                 backgroundColor: "rgba(59,130,246,0.08)",
                 borderWidth: 3,
