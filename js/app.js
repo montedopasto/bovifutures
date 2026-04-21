@@ -213,6 +213,9 @@ window.onload = function(){
     carregarGrafico();
     atualizarKPIs();
     renderPrevisao();
+    atualizarHeaderTempo();
+
+    setInterval(atualizarHeaderTempo, 1000);
 };
 function atualizarKPIs(){
 
