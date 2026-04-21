@@ -237,7 +237,18 @@ function obterPrevisaoArray(){
     let previsao = [];
 
     for(let i=1;i<=4;i++){
-        valor += (tendencia * 0.6) + (pressao * 0.4) + choque;
+        const precoJusto = 7.8;
+const regressao = (precoJusto - valor) * 0.2;
+const ruido = (Math.random() - 0.5) * 0.1;
+const ciclo = Math.sin(i / 2) * 0.05;
+
+valor +=
+    (tendencia * 0.4) +
+    (pressao * 0.3) +
+    choque +
+    regressao +
+    ruido +
+    ciclo;
         previsao.push(valor);
     }
 
