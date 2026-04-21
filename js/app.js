@@ -258,7 +258,7 @@ valor +=
 }
 
 const previsaoValores = obterPrevisaoArray();
-    const previsaoVivo = previsaoValores.map(v => v / contexto.rendimento);
+    const previsaoVivo = previsaoValores.map(v => v * contexto.rendimento);
     window.chart = new Chart(ctx, {
     type: "line",
     data: {
