@@ -2,8 +2,28 @@ async function carregarDados(){
 
     try {
 
-        const res = await fetch("data/market-data.json");
-        const data = await res.json();
+        const proxy = "https://api.allorigins.win/raw?url=";
+
+// página principal
+const url = "https://www.confagri.pt/temas/bolsa-do-bovino/";
+
+const res = await fetch(proxy + encodeURIComponent(url));
+const html = await res.text();
+
+const parser = new DOMParser();
+const doc = parser.parseFromString(html, "text/html");
+
+// apanhar todos os links
+const links = [...doc.querySelectorAll("a")];
+
+// encontrar o primeiro link que parece sessão
+const linkSessao = links.find(l => 
+    l.href.includes("bolsa") || l.textContent.toLowerCase().includes("sess")
+);
+
+const urlSessao = linkSessao.href;
+
+console.log("Sessão encontrada:", urlSessao);
 
         console.log("DATA:", data); // DEBUG
 
