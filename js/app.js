@@ -1,81 +1,90 @@
 async function carregarDados(){
 
-    const res = await fetch("data/market-data.json");
-    const data = await res.json();
+    try {
 
-    window.marketData = data;
+        const res = await fetch("data/market-data.json");
+        const data = await res.json();
 
-    const precoCarcaca = data.mercadoCarcaca.preco;
-    const rendimento = data.rendimento;
+        console.log("DATA:", data); // DEBUG
 
-    // calcular vivo estimado
-    const precoVivoEstimado = precoCarcaca * rendimento;
+        window.marketData = data;
 
-    // KPI principal
-    document.getElementById("precoCarcacaPT").innerText =
-        precoCarcaca.toFixed(2) + " €/kg";
+        const precoCarcaca = data.mercadoCarcaca.preco;
+        const rendimento = data.rendimento;
 
-    document.getElementById("precoVivoPT").innerText =
-        precoVivoEstimado.toFixed(2) + " €/kg (estimado)";
+        const precoVivoEstimado = precoCarcaca * rendimento;
 
-    // INFO (topbar)
-    document.getElementById("infoData").innerText =
-        "Atualizado: " + data.mercadoCarcaca.data;
-
-    document.getElementById("infoFonteKPI").innerText =
-        data.mercadoCarcaca.nome + " | " +
-        data.mercadoCarcaca.categoria;
-
-    // INTELIGÊNCIA DE MERCADO
-    const score = calcularScoreMercado(data.fatores);
-    const leitura = interpretarMercado(score);
-
-    document.getElementById("estadoMercado").innerText = leitura.estado;
-    document.getElementById("scoreMercado").innerText = "Score: " + score;
-    document.getElementById("textoMercado").innerText = leitura.texto;
-
-    // GRÁFICO
-    const ctx = document.getElementById('graficoPrecos');
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: data.historico.datas,
-            datasets: [
-                {
-                    label: 'Carcaça €/kg',
-                    data: data.historico.carcaca,
-                    borderColor: '#00ff88',
-                    backgroundColor: 'rgba(0,255,136,0.1)',
-                    tension: 0.3
-                },
-                {
-                    label: 'Vivo €/kg',
-                    data: data.historico.vivo,
-                    borderColor: '#3b82f6',
-                    backgroundColor: 'rgba(59,130,246,0.1)',
-                    tension: 0.3
-                }
-            ]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    labels: { color: '#ccc' }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: { color: '#aaa' },
-                    grid: { color: '#222' }
-                },
-                y: {
-                    ticks: { color: '#aaa' },
-                    grid: { color: '#222' }
-                }
-            }
+        // KPIs (só atualiza se existir o elemento)
+        if(document.getElementById("precoCarcacaPT")){
+            document.getElementById("precoCarcacaPT").innerText =
+                precoCarcaca.toFixed(2) + " €/kg";
         }
-    });
+
+        if(document.getElementById("precoVivoPT")){
+            document.getElementById("precoVivoPT").innerText =
+                precoVivoEstimado.toFixed(2) + " €/kg (estimado)";
+        }
+
+        if(document.getElementById("infoData")){
+            document.getElementById("infoData").innerText =
+                "Atualizado: " + data.mercadoCarcaca.data;
+        }
+
+        if(document.getElementById("infoFonteKPI")){
+            document.getElementById("infoFonteKPI").innerText =
+                data.mercadoCarcaca.nome + " | " +
+                data.mercadoCarcaca.categoria;
+        }
+
+        if(document.getElementById("estadoMercado")){
+            const score = calcularScoreMercado(data.fatores);
+            const leitura = interpretarMercado(score);
+
+            document.getElementById("estadoMercado").innerText = leitura.estado;
+            document.getElementById("scoreMercado").innerText = "Score: " + score;
+            document.getElementById("textoMercado").innerText = leitura.texto;
+        }
+
+        // GRÁFICO (só se existir e Chart estiver carregado)
+        const ctx = document.getElementById('graficoPrecos');
+
+        if(ctx && window.Chart){
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.historico.datas,
+                    datasets: [
+                        {
+                            label: 'Carcaça €/kg',
+                            data: data.historico.carcaca,
+                            borderColor: '#00ff88',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Vivo €/kg',
+                            data: data.historico.vivo,
+                            borderColor: '#3b82f6',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    plugins: {
+                        legend: { labels: { color: '#ccc' } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#aaa' }, grid: { color: '#222' } },
+                        y: { ticks: { color: '#aaa' }, grid: { color: '#222' } }
+                    }
+                }
+            });
+
+        }
+
+    } catch (err) {
+        console.error("ERRO:", err);
+    }
 
 }
 
