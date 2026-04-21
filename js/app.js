@@ -4,7 +4,7 @@ function guardarPreco(){
     const tipo = document.getElementById("tipoPreco").value;
     const valor = parseFloat(document.getElementById("valorPreco").value);
 
-    if(!data || !valor){
+    if(!semana || !valor){
         alert("Preenche todos os campos");
         return;
     }
