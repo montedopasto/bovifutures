@@ -59,3 +59,8 @@ function carregarGrafico(){
         }
     });
 }
+window.onload = function(){
+
+    carregarGrafico();
+
+};
