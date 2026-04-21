@@ -175,7 +175,11 @@ function carregarGrafico(){
     historico.sort((a,b) => a.semana.localeCompare(b.semana));
 
     // semanas únicas
-    const labels = [...new Set(historico.map(d => d.semana))];
+    let labels = [...new Set(historico.map(d => d.semana))];
+
+const previsaoLabels = ["W+1","W+2","W+3","W+4"];
+
+labels = labels.concat(previsaoLabels);
 
     const carcacaData = labels.map(semana => {
         const reg = historico.find(d => d.semana === semana && d.tipo === "carcaca");
