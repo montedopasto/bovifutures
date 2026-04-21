@@ -274,18 +274,16 @@ const previsaoValores = obterPrevisaoArray();
                 fill: true,
                 spanGaps: true
             },
-            {
-                label: "Vivo €/kg",
-                data: vivoData.concat([null,null,null,null]),
-                borderColor: "#3b82f6",
-                backgroundColor: "rgba(59,130,246,0.08)",
-                borderWidth: 3,
-                tension: 0.4,
-                pointRadius: 2,
-                pointHoverRadius: 6,
-                fill: true,
-                spanGaps: true
-            },
+            ,
+{
+    label: "Previsão Vivo €/kg",
+    data: new Array(baseLabels.length).fill(null).concat(previsaoVivo),
+    borderColor: "#60a5fa",
+    borderDash: [4,4],
+    borderWidth: 2,
+    tension: 0.4,
+    pointRadius: 0
+},
             {
                 label: "Previsão €/kg",
                 data: new Array(baseLabels.length).fill(null).concat(previsaoValores),
