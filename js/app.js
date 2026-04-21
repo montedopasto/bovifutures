@@ -227,7 +227,7 @@ function guardarPreco(){
 
    carregarGrafico();
 atualizarKPIs();
-calcularPrevisao();
+renderPrevisao();
 }
 function carregarGrafico(){
 
