@@ -1,3 +1,19 @@
+const contexto = {
+    // PROCURA
+    consumoBase: 100,
+    sazonalidade: 1.05,
+    rendimento: 0.95,
+
+    // OFERTA
+    producao: 1.00,
+    custoRacao: 1.10,
+    abates: 1.00,
+
+    // CHOQUES
+    doencas: 0.90,
+    geopolitica: 0.95,
+    exportacoes: 1.05
+};
 function guardarPreco(){
 
     const semana = document.getElementById("semana").value;
