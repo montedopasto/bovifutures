@@ -139,28 +139,56 @@ function atualizarKPIs(){
 
     let historico = JSON.parse(localStorage.getItem("precos")) || [];
 
-    if(historico.length === 0) return;
+    if(historico.length < 2) return;
 
     // ordenar por semana
     historico.sort((a,b) => a.semana.localeCompare(b.semana));
 
-    // separar por tipo
     const carcaca = historico.filter(d => d.tipo === "carcaca");
     const vivo = historico.filter(d => d.tipo === "vivo");
 
-    // últimos valores
-    const ultimaCarcaca = carcaca[carcaca.length - 1];
-    const ultimoVivo = vivo[vivo.length - 1];
+    function calcularVariacao(lista){
 
-    // atualizar UI
-    if(ultimaCarcaca){
-        document.getElementById("precoCarcacaPT").innerText =
-            ultimaCarcaca.valor.toFixed(2) + " €/kg";
+        if(lista.length < 2) return null;
+
+        const atual = lista[lista.length - 1].valor;
+        const anterior = lista[lista.length - 2].valor;
+
+        const diff = atual - anterior;
+        const perc = (diff / anterior) * 100;
+
+        return {
+            atual,
+            diff,
+            perc
+        };
     }
 
-    if(ultimoVivo){
-        document.getElementById("precoVivoPT").innerText =
-            ultimoVivo.valor.toFixed(2) + " €/kg";
+    const varCarcaca = calcularVariacao(carcaca);
+    const varVivo = calcularVariacao(vivo);
+
+    function formatar(valor){
+
+        const seta = valor.diff > 0 ? "↑" : valor.diff < 0 ? "↓" : "→";
+        const cor = valor.diff > 0 ? "#00ff88" : valor.diff < 0 ? "#ff4d4d" : "#aaa";
+
+        return `
+            <div>
+                <div style="font-size:22px;">${valor.atual.toFixed(2)} €/kg</div>
+                <div style="font-size:13px;color:${cor};">
+                    ${valor.diff > 0 ? "+" : ""}${valor.diff.toFixed(2)} €
+                    (${valor.perc.toFixed(1)}%) ${seta}
+                </div>
+            </div>
+        `;
+    }
+
+    if(varCarcaca){
+        document.getElementById("precoCarcacaPT").innerHTML = formatar(varCarcaca);
+    }
+
+    if(varVivo){
+        document.getElementById("precoVivoPT").innerHTML = formatar(varVivo);
     }
 
 }
