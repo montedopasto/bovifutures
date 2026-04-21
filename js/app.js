@@ -175,8 +175,32 @@ valor +=
             </div>
         `;
     });
+function renderPrevisao(){
+
+    const previsao = calcularPrevisao();
+
+    if(previsao.length === 0){
+        document.getElementById("previsaoFutura").innerText = "Dados insuficientes";
+        return;
+    }
+
+    let html = "";
+
+    previsao.forEach((valor, i)=>{
+
+        const vivo = valor * contexto.rendimento;
+
+        html += `
+            <div style="margin-bottom:6px;">
+                W+${i+1} → 
+                <b>${valor.toFixed(2)} €/kg</b>
+                <span style="color:#888;"> | Vivo: ${vivo.toFixed(2)} €/kg</span>
+            </div>
+        `;
+    });
 
     document.getElementById("previsaoFutura").innerHTML = html;
+}
 }
 function guardarPreco(){
 
