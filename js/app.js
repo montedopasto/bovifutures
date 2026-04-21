@@ -20,17 +20,17 @@ const convertido = converterVivoParaCarcaca(
 const spread = precoCarcaca - convertido;
     );
 
-    document.getElementById("precoVivoPT").innerText =
-        data.precoVivoPT + " €/kg";
-
     document.getElementById("precoCarcacaPT").innerText =
-        data.precoCarcacaPT + " €/kg";
+    precoCarcaca.toFixed(2) + " €/kg";
 
-    document.getElementById("convertido").innerText =
-        convertido.toFixed(2) + " €/kg";
+document.getElementById("precoVivoPT").innerText =
+    precoVivoEstimado.toFixed(2) + " €/kg (estimado)";
 
-    document.getElementById("spread").innerText =
-        spread.toFixed(2) + " €/kg";
+document.getElementById("convertido").innerText =
+    convertido.toFixed(2) + " €/kg";
+
+document.getElementById("spread").innerText =
+    spread.toFixed(2) + " €/kg";
 }
 
 carregarDados();
