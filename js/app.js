@@ -237,32 +237,7 @@ const previsaoValores = obterPrevisaoArray();
     type: "line",
     data: {
         labels: labels,
-        datasets: [
-            {
-                label: "Carcaça €/kg",
-                data: carcacaData.concat([null,null,null,null]),
-                borderColor: "#00ff88",
-                backgroundColor: "rgba(0,255,136,0.08)",
-                borderWidth: 3,
-                tension: 0.4,
-                pointRadius: 2,
-                pointHoverRadius: 6,
-                fill: true,
-                spanGaps: true
-            },
-            {
-                label: "Vivo €/kg",
-                data: vivoData.concat([null,null,null,null]),
-                borderColor: "#3b82f6",
-                backgroundColor: "rgba(59,130,246,0.08)",
-                borderWidth: 3,
-                tension: 0.4,
-                pointRadius: 2,
-                pointHoverRadius: 6,
-                fill: true,
-                spanGaps: true
-            }
-        ]
+         label: "Vivo €/kg",
     },
     options: {
         responsive: true,
