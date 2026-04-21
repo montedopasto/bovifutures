@@ -22,6 +22,7 @@ function guardarPreco(){
     alert("Preço guardado com sucesso!");
 
     carregarGrafico();
+atualizarKPIs();
 }
 function carregarGrafico(){
 
