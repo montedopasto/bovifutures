@@ -90,3 +90,39 @@ function guardarPreco(){
 
     carregarGrafico();
 }
+function carregarGrafico(){
+
+    let historico = JSON.parse(localStorage.getItem("precos")) || [];
+
+    const carcaca = historico.filter(d => d.tipo === "carcaca");
+    const vivo = historico.filter(d => d.tipo === "vivo");
+
+    const labels = carcaca.map(d => d.data);
+
+    const ctx = document.getElementById("graficoPrecos");
+
+    if(!ctx) return;
+
+    if(window.chart) window.chart.destroy();
+
+    window.chart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Carcaça €/kg",
+                    data: carcaca.map(d => d.valor),
+                    borderColor: "#00ff88",
+                    tension: 0.3
+                },
+                {
+                    label: "Vivo €/kg",
+                    data: vivo.map(d => d.valor),
+                    borderColor: "#3b82f6",
+                    tension: 0.3
+                }
+            ]
+        }
+    });
+}
