@@ -116,3 +116,7 @@ button{
     border:none;
     cursor:pointer;
 }
+canvas{
+    width:100% !important;
+    height:250px !important;
+}
