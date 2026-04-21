@@ -12,10 +12,10 @@ function guardarPreco(){
     let historico = JSON.parse(localStorage.getItem("precos")) || [];
 
     historico.push({
-        data: data,
-        tipo: tipo,
-        valor: valor
-    });
+    semana: semana,
+    tipo: tipo,
+    valor: valor
+});
 
     localStorage.setItem("precos", JSON.stringify(historico));
 
