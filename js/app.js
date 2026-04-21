@@ -103,10 +103,7 @@ function calcularPrevisao(){
         previsao.push(valor);
     }
 
-    return previsao;
-}
-
-}
+ return previsao;
 }
 function guardarPreco(){
 
