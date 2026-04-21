@@ -132,9 +132,8 @@ function carregarGrafico(){
 });
 }
 window.onload = function(){
-
     carregarGrafico();
-
+    atualizarKPIs();
 };
 function atualizarKPIs(){
 
