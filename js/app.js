@@ -188,7 +188,7 @@ const labels = baseLabels.concat(previsaoLabels);
         return reg ? reg.valor : null;
     });
 
-    const vivoData = labels.map(semana => {
+    const vivoData = baseLabels.map(semana => {
         const reg = historico.find(d => d.semana === semana && d.tipo === "vivo");
         return reg ? reg.valor : null;
     });
