@@ -116,7 +116,9 @@ function calcularPrevisao(){
         // regressão à média (preço justo ~ 7.80 por exemplo)
 const precoJusto = 7.8;
 
-const regressao = (precoJusto - valor) * 0.2;
+const regressao = (precoJusto - valor) * 0.4;
+const ruido = (Math.random() - 0.5) * 0.1;
+const ciclo = Math.sin(i / 2) * 0.05;
 
 valor +=
     (tendencia * 0.4) +
