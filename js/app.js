@@ -174,14 +174,13 @@ function carregarGrafico(){
     // ordenar por semana
     historico.sort((a,b) => a.semana.localeCompare(b.semana));
 
-    // semanas únicas
-    let labels = [...new Set(historico.map(d => d.semana))];
-
-// adicionar semanas futuras
+    // semanas reais (histórico)
 const baseLabels = [...new Set(historico.map(d => d.semana))];
 
+// semanas futuras
 const previsaoLabels = ["W+1","W+2","W+3","W+4"];
 
+// eixo completo
 const labels = baseLabels.concat(previsaoLabels);
 
     const carcacaData = labels.map(semana => {
