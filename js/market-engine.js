@@ -242,3 +242,54 @@ function atualizarSentimentoMercado(historico){
             #111827 ${graus}deg
         )`;
 }
+function atualizarIndicadoresTecnicos(historico){
+
+    const carcaca = historico
+        .filter(d => d.tipo === "carcaca");
+
+    if(carcaca.length < 4) return;
+
+    const ultimos = carcaca.slice(-4);
+
+    const primeiro = ultimos[0].valor;
+    const ultimo = ultimos[ultimos.length - 1].valor;
+
+    const diff = ultimo - primeiro;
+
+    // ======================
+    // MOMENTUM
+    // ======================
+
+    document.getElementById("momentumValor").innerText =
+        diff > 0 ? "Bullish" : "Bearish";
+
+    // ======================
+    // VOLATILIDADE
+    // ======================
+
+    const volatilidade = Math.abs(diff);
+
+    document.getElementById("volatilidadeValor").innerText =
+        volatilidade > 0.5 ? "Alta" : "Baixa";
+
+    // ======================
+    // RISCO
+    // ======================
+
+    document.getElementById("riscoValor").innerText =
+        volatilidade > 0.7 ? "Elevado" : "Moderado";
+
+    // ======================
+    // PROCURA
+    // ======================
+
+    document.getElementById("procuraValor").innerText =
+        calcularProcura() > 60 ? "Elevada" : "Fraca";
+
+    // ======================
+    // OFERTA
+    // ======================
+
+    document.getElementById("ofertaValor").innerText =
+        calcularOferta() > 80 ? "Controlada" : "Pressionada";
+}
