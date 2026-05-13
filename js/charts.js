@@ -32,7 +32,25 @@ const labels = baseLabels.concat(previsaoLabels);
     });
 
     const ctx = document.getElementById("graficoPrecos");
+const canvas = ctx.getContext("2d");
 
+// ==========================
+// GRADIENTE VERDE
+// ==========================
+
+const gradienteVerde = canvas.createLinearGradient(0,0,0,400);
+
+gradienteVerde.addColorStop(0,"rgba(0,255,136,0.35)");
+gradienteVerde.addColorStop(1,"rgba(0,255,136,0.00)");
+
+// ==========================
+// GRADIENTE AZUL
+// ==========================
+
+const gradienteAzul = canvas.createLinearGradient(0,0,0,400);
+
+gradienteAzul.addColorStop(0,"rgba(59,130,246,0.35)");
+gradienteAzul.addColorStop(1,"rgba(59,130,246,0.00)");
     if(!ctx) return;
 
     const previsaoValores = calcularPrevisao();
