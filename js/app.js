@@ -300,3 +300,106 @@ function gerarLeituraMercado(historico){
 
     return texto;
 }
+// =====================================
+// INDICADORES TÉCNICOS IA
+// =====================================
+
+function atualizarIndicadoresIA(){
+
+    const pressao = calcularPressaoMercado();
+
+    // =========================
+    // MOMENTUM
+    // =========================
+
+    let momentum = "Neutro";
+
+    if(pressao > 0.08){
+        momentum = "Bullish";
+    }
+    else if(pressao < -0.08){
+        momentum = "Bearish";
+    }
+
+    document.getElementById("momentumValor").innerText = momentum;
+
+    // =========================
+    // VOLATILIDADE
+    // =========================
+
+    let volatilidade = "Moderada";
+
+    if(Math.abs(pressao) > 0.12){
+        volatilidade = "Alta";
+    }
+
+    if(Math.abs(pressao) < 0.05){
+        volatilidade = "Baixa";
+    }
+
+    document.getElementById("volatilidadeValor").innerText = volatilidade;
+
+    // =========================
+    // RISCO
+    // =========================
+
+    let risco = "Moderado";
+
+    if(contexto.doencas < 0.92){
+        risco = "Elevado";
+    }
+
+    if(contexto.doencas > 0.97){
+        risco = "Baixo";
+    }
+
+    document.getElementById("riscoValor").innerText = risco;
+
+    // =========================
+    // PROCURA
+    // =========================
+
+    let procuraTxt = "Estável";
+
+    if(contexto.exportacoes > 1){
+        procuraTxt = "Elevada";
+    }
+
+    if(contexto.exportacoes < 0.95){
+        procuraTxt = "Fraca";
+    }
+
+    document.getElementById("procuraValor").innerText = procuraTxt;
+
+    // =========================
+    // OFERTA
+    // =========================
+
+    let ofertaTxt = "Normal";
+
+    if(contexto.abates > 1.05){
+        ofertaTxt = "Elevada";
+    }
+
+    if(contexto.abates < 0.95){
+        ofertaTxt = "Limitada";
+    }
+
+    document.getElementById("ofertaValor").innerText = ofertaTxt;
+
+    // =========================
+    // EXPORTAÇÕES
+    // =========================
+
+    let exportTxt = "Neutras";
+
+    if(contexto.exportacoes > 1){
+        exportTxt = "Positivas";
+    }
+
+    if(contexto.exportacoes < 0.95){
+        exportTxt = "Negativas";
+    }
+
+    document.getElementById("exportacaoValor").innerText = exportTxt;
+}
