@@ -10,6 +10,9 @@ async function carregarDados(){
     carregarGrafico();
     atualizarKPIs();
     renderPrevisao();
+    const leitura = gerarLeituraMercado(historico);
+
+document.getElementById("leituraMercado").innerText = leitura;
 }
 async function guardarPreco(){
 
