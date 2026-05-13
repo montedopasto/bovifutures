@@ -403,3 +403,17 @@ function atualizarIndicadoresIA(){
 
     document.getElementById("exportacaoValor").innerText = exportTxt;
 }
+// =====================================
+// START APP
+// =====================================
+
+window.onload = function(){
+
+    carregarDados();
+
+    atualizarIndicadoresIA();
+
+    atualizarHeaderTempo();
+
+    setInterval(atualizarHeaderTempo, 1000);
+};
