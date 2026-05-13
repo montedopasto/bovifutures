@@ -75,7 +75,7 @@ window.chart = new Chart(ctx, {
     }
 });
 }
-window.onload = function(){
+window.onload = async function(){
 
     carregarDados();
 
