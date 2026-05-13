@@ -77,7 +77,7 @@ window.chart = new Chart(ctx, {
 }
 window.onload = async function(){
 
-    carregarDados();
+    await carregarDados();
 
     atualizarHeaderTempo();
 
