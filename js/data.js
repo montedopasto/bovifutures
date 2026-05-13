@@ -10,6 +10,7 @@ async function carregarDados(){
     carregarGrafico();
     atualizarKPIs();
     renderPrevisao();
+    atualizarSentimentoMercado(historico);
     const leitura = gerarLeituraMercado(historico);
 
 document.getElementById("leituraMercado").innerText = leitura;
