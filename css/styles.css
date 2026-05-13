@@ -132,3 +132,126 @@ canvas{
     width:100% !important;
     height:250px !important;
 }
+/* =========================
+   HOVER PREMIUM
+========================= */
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.45),
+        0 0 30px rgba(0,255,136,0.05);
+}
+
+/* =========================
+   TITULOS
+========================= */
+
+.card h3{
+
+    margin-top:0;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    color:#8b949e;
+}
+
+/* =========================
+   GRID PREMIUM
+========================= */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:20px;
+
+    margin-top:20px;
+}
+
+/* =========================
+   BIG CARD
+========================= */
+
+.big{
+
+    min-height:500px;
+}
+
+/* =========================
+   FULL WIDTH
+========================= */
+
+.full{
+
+    grid-column:1 / -1;
+}
+
+/* =========================
+   FUNDO GLOBAL
+========================= */
+
+body{
+
+    background:
+        radial-gradient(circle at top left,#13202c 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#1b2d22 0%,transparent 30%),
+        #090c10;
+
+    color:#fff;
+}
+
+/* =========================
+   KPI PREMIUM
+========================= */
+
+.kpi{
+
+    background:linear-gradient(
+        145deg,
+        rgba(18,22,28,0.95),
+        rgba(8,10,14,0.95)
+    );
+
+    border-radius:20px;
+
+    padding:22px;
+
+    border:1px solid rgba(255,255,255,0.04);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 22px;
+
+    background:rgba(15,18,24,0.9);
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    margin-bottom:20px;
+}
