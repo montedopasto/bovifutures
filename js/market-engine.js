@@ -149,3 +149,96 @@ function gerarLeituraMercado(historico){
 
     return texto;
 }
+function atualizarSentimentoMercado(historico){
+
+    const carcaca = historico
+        .filter(d => d.tipo === "carcaca");
+
+    if(carcaca.length < 4) return;
+
+    // =========================
+    // TENDÊNCIA
+    // =========================
+
+    const ultimos = carcaca.slice(-4);
+
+    const primeiro = ultimos[0].valor;
+    const ultimo = ultimos[ultimos.length - 1].valor;
+
+    const diferenca = ultimo - primeiro;
+
+    // =========================
+    // PRESSÃO
+    // =========================
+
+    const pressao = calcularPressaoMercado();
+
+    // =========================
+    // SCORE
+    // =========================
+
+    let score = 50;
+
+    score += diferenca * 25;
+
+    score += pressao * 100;
+
+    // limitar
+    score = Math.max(0, Math.min(100, score));
+
+    // =========================
+    // RENDER SCORE
+    // =========================
+
+    document.getElementById("sentimentoValor").innerText =
+        Math.round(score);
+
+    // =========================
+    // ESTADO
+    // =========================
+
+    const estado = document.getElementById("estadoMercado");
+
+    const label = document.querySelector(".sentiment-label");
+
+    if(score >= 65){
+
+        estado.innerText = "Bullish";
+        estado.style.color = "#22c55e";
+
+        label.innerText = "BULLISH";
+        label.className = "sentiment-label bullish";
+
+    }
+    else if(score <= 40){
+
+        estado.innerText = "Bearish";
+        estado.style.color = "#ef4444";
+
+        label.innerText = "BEARISH";
+        label.className = "sentiment-label bearish";
+
+    }
+    else{
+
+        estado.innerText = "Neutral";
+        estado.style.color = "#facc15";
+
+        label.innerText = "NEUTRAL";
+        label.className = "sentiment-label";
+
+    }
+
+    // =========================
+    // CÍRCULO DINÂMICO
+    // =========================
+
+    const graus = (score / 100) * 360;
+
+    document.querySelector(".sentiment-circle").style.background =
+        `conic-gradient(
+            #22c55e 0deg,
+            #22c55e ${graus}deg,
+            #111827 ${graus}deg
+        )`;
+}
