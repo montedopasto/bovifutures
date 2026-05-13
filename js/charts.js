@@ -6,7 +6,14 @@ function carregarGrafico(){
     historico.sort((a,b) => a.semana.localeCompare(b.semana));
 
     // semanas reais (histórico)
-const baseLabels = [...new Set(historico.map(d => d.semana))];
+const baseLabels = [...new Set(historico.map(d => d.semana))]
+.sort((a,b)=>{
+
+    const numA = parseInt(a.replace("W",""));
+    const numB = parseInt(b.replace("W",""));
+
+    return numA - numB;
+});
 
 // semanas futuras
 const previsaoLabels = ["W+1","W+2","W+3","W+4"];
