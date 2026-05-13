@@ -1375,3 +1375,132 @@ body::after{
     position:relative;
     z-index:2;
 }
+/* =========================================
+   LIVE MARKET PULSE
+========================================= */
+
+.hero-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:18px;
+    right:18px;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#00ff88;
+
+    box-shadow:
+        0 0 12px #00ff88;
+
+    animation:pulseLive 2s infinite;
+}
+
+@keyframes pulseLive{
+
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1.8);
+        opacity:0.4;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* =========================================
+   PANEL HOVER FX
+========================================= */
+
+.panel,
+.widget,
+.hero-card{
+
+    position:relative;
+}
+
+.panel::after,
+.widget::after,
+.hero-card::after{
+
+    transition:0.3s;
+}
+
+/* =========================================
+   GLASS SHIMMER
+========================================= */
+
+.panel::before,
+.widget::before,
+.hero-card::before{
+
+    transition:0.4s;
+}
+
+.panel:hover::before,
+.widget:hover::before,
+.hero-card:hover::before{
+
+    opacity:1;
+}
+
+/* =========================================
+   HOVER BORDER GLOW
+========================================= */
+
+.panel:hover,
+.widget:hover,
+.hero-card:hover{
+
+    border-color:rgba(0,255,136,0.18);
+}
+
+/* =========================================
+   BUTTON MICRO FX
+========================================= */
+
+button{
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+button::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:100%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.18),
+            transparent
+        );
+
+    transition:0.5s;
+}
+
+button:hover::before{
+
+    left:120%;
+}
