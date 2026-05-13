@@ -919,3 +919,82 @@ body{
 .hero-card.purple h2{
     color:#c084fc;
 }
+/* =========================================
+   CHART PANEL
+========================================= */
+
+.chart-panel{
+
+    padding:26px;
+
+    min-height:620px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+}
+
+.panel-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:white;
+}
+
+/* RANGE BUTTONS */
+
+.ranges{
+    display:flex;
+    gap:10px;
+}
+
+.ranges button{
+
+    border:none;
+
+    background:rgba(255,255,255,0.06);
+
+    color:#94a3b8;
+
+    padding:10px 16px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:0.25s;
+}
+
+.ranges button:hover{
+
+    background:#00ff88;
+
+    color:#050816;
+}
+
+/* CANVAS */
+
+.chart-panel canvas{
+
+    flex:1 !important;
+
+    width:100% !important;
+
+    max-height:520px !important;
+}
