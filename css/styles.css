@@ -703,3 +703,129 @@ canvas{
         rgba(30,64,175,0.4)
     );
 }
+/* =========================================
+   PREMIUM BACKGROUND
+========================================= */
+
+body{
+
+    margin:0;
+    font-family:Inter,system-ui,sans-serif;
+
+    background:
+        radial-gradient(circle at top left, rgba(0,255,136,0.10), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,0.10), transparent 35%),
+        #050816;
+
+    color:white;
+
+    overflow-x:hidden;
+}
+
+/* =========================================
+   APP LAYOUT
+========================================= */
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+
+    width:260px;
+
+    background:rgba(10,15,30,0.75);
+
+    backdrop-filter:blur(18px);
+
+    border-right:1px solid rgba(255,255,255,0.06);
+
+    padding:30px 20px;
+
+    position:sticky;
+    top:0;
+    height:100vh;
+}
+
+.sidebar h2{
+
+    font-size:28px;
+    margin-bottom:40px;
+
+    background:linear-gradient(90deg,#00ff88,#3b82f6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.sidebar nav a{
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    color:#94a3b8;
+
+    transition:0.25s;
+
+    cursor:pointer;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active{
+
+    background:rgba(255,255,255,0.06);
+
+    color:white;
+}
+
+/* =========================================
+   MAIN
+========================================= */
+
+.main{
+    flex:1;
+    padding:30px;
+}
+
+/* =========================================
+   PANELS
+========================================= */
+
+.panel,
+.widget,
+.hero-card{
+
+    background:rgba(15,23,42,0.65);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(14px);
+
+    border-radius:24px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.30);
+
+    transition:0.25s;
+}
+
+.panel:hover,
+.widget:hover,
+.hero-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.45);
+}
