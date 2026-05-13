@@ -67,7 +67,12 @@ window.chart = new Chart(ctx, {
                 data: carcacaData.concat([null,null,null,null]),
                 borderColor: "#00ff88",
                 tension: 0.4,
-                fill: true
+                fill: true,
+backgroundColor: gradienteVerde,
+borderWidth: 3,
+pointBackgroundColor:"#00ff88",
+pointBorderWidth:0,
+pointHoverRadius:7
             },
 
             {
@@ -75,7 +80,12 @@ window.chart = new Chart(ctx, {
                 data: vivoData.concat([null,null,null,null]),
                 borderColor: "#3b82f6",
                 tension: 0.4,
-                fill: true
+                fill: true,
+backgroundColor: gradienteAzul,
+borderWidth: 3,
+pointBackgroundColor:"#3b82f6",
+pointBorderWidth:0,
+pointHoverRadius:7
             },
 
             {
