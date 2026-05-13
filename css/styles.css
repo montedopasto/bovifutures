@@ -1150,3 +1150,134 @@ body{
 
     color:#00ff88;
 }
+/* =========================================
+   DASHBOARD GRID
+========================================= */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0, 1.6fr)
+        minmax(320px, 0.7fr);
+
+    gap:24px;
+
+    align-items:start;
+}
+
+/* =========================================
+   MARKET PANEL
+========================================= */
+
+.market-panel{
+
+    padding:26px;
+
+    min-height:220px;
+}
+
+.market-panel h3{
+
+    margin-top:0;
+
+    margin-bottom:20px;
+
+    font-size:22px;
+}
+
+/* =========================================
+   MARKET READING
+========================================= */
+
+.market-reading{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+    font-size:15px;
+}
+
+/* =========================================
+   INPUT PANEL
+========================================= */
+
+.input-panel{
+
+    padding:26px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+.input-panel h3{
+
+    margin-top:0;
+
+    margin-bottom:10px;
+}
+
+/* INPUTS */
+
+.input-panel input,
+.input-panel select{
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    color:white;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    outline:none;
+
+    transition:0.25s;
+}
+
+.input-panel input:focus,
+.input-panel select:focus{
+
+    border-color:#00ff88;
+
+    box-shadow:
+        0 0 0 4px rgba(0,255,136,0.10);
+}
+
+/* BUTTON */
+
+.input-panel button{
+
+    margin-top:10px;
+
+    border:none;
+
+    background:linear-gradient(90deg,#00ff88,#00c16a);
+
+    color:#04110a;
+
+    font-weight:700;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    transition:0.25s;
+}
+
+.input-panel button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0,255,136,0.25);
+}
