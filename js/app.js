@@ -185,3 +185,118 @@ function getWeekNumber(date){
 
     return String(weekNum).padStart(2, '0');
 }
+function gerarLeituraMercado(historico){
+
+    const carcaca = historico
+        .filter(d => d.tipo === "carcaca")
+        .sort((a,b)=>{
+
+            const numA = parseInt(a.semana.replace("W",""));
+            const numB = parseInt(b.semana.replace("W",""));
+
+            return numA - numB;
+        });
+
+    if(carcaca.length < 4){
+
+        return "Dados insuficientes para análise de mercado.";
+    }
+
+    const ultimos = carcaca.slice(-4);
+
+    const primeiro = ultimos[0].valor;
+    const ultimo = ultimos[ultimos.length - 1].valor;
+
+    const diferenca = ultimo - primeiro;
+
+    let tendencia = "";
+
+    // =========================
+    // TENDÊNCIA
+    // =========================
+
+    if(diferenca > 0.10){
+
+        tendencia = "bullish";
+
+    }else if(diferenca < -0.10){
+
+        tendencia = "bearish";
+
+    }else{
+
+        tendencia = "lateral";
+    }
+
+    // =========================
+    // PRESSÃO
+    // =========================
+
+    const pressao = calcularPressaoMercado();
+
+    let texto = "";
+
+    // =========================
+    // TEXTO TENDÊNCIA
+    // =========================
+
+    if(tendencia === "bullish"){
+
+        texto += `
+        O mercado apresenta uma tendência de valorização nas últimas semanas, 
+        refletindo pressão positiva sobre os preços da carcaça.
+        `;
+
+    }else if(tendencia === "bearish"){
+
+        texto += `
+        O mercado demonstra pressão descendente, 
+        com correção nos preços da carcaça.
+        `;
+
+    }else{
+
+        texto += `
+        O mercado mantém um comportamento relativamente estável, 
+        sem movimentos bruscos de valorização.
+        `;
+    }
+
+    // =========================
+    // TEXTO PRESSÃO
+    // =========================
+
+    if(pressao > 0.05){
+
+        texto += `
+        A procura continua superior à oferta disponível, 
+        sustentando os preços em níveis elevados.
+        `;
+
+    }else if(pressao < -0.05){
+
+        texto += `
+        A oferta disponível continua elevada face à procura, 
+        limitando subidas mais agressivas.
+        `;
+
+    }else{
+
+        texto += `
+        O equilíbrio entre procura e oferta mantém-se relativamente controlado.
+        `;
+    }
+
+    // =========================
+    // CUSTO RAÇÃO
+    // =========================
+
+    if(contexto.custoRacao > 1.05){
+
+        texto += `
+        Os custos de alimentação animal continuam a exercer pressão sobre os produtores.
+        `;
+    }
+
+    return texto;
+}
