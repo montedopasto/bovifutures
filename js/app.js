@@ -209,9 +209,9 @@ window.chart = new Chart(ctx, {
 });
 }
 window.onload = function(){
-    carregarGrafico();
-    atualizarKPIs();
-    renderPrevisao();
+
+    carregarDados();
+
     atualizarHeaderTempo();
 
     setInterval(atualizarHeaderTempo, 1000);
