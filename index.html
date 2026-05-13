@@ -28,93 +28,138 @@
     <!-- MAIN -->
     <main class="main">
 
-        <!-- TOP BAR -->
-        <div class="topbar">
-    <div id="estadoMercado">--</div>
-    <div id="scoreMercado">--</div>
+    <!-- TOPBAR -->
+    <div class="topbar">
 
-    <div id="infoData"></div>
-    <div id="infoHora"></div>
-    <div id="infoSemana"></div>
-</div>
+        <div class="top-left">
+            <h1>BoviFutures Intelligence</h1>
+            <span>AI Market Analytics Platform</span>
+        </div>
 
-        <!-- KPIs -->
-        <div class="kpi-row">
+        <div class="top-right">
+            <div id="infoData"></div>
+            <div id="infoHora"></div>
+            <div id="infoSemana"></div>
+        </div>
 
-            <div class="kpi">
-                <span>Vivo PT</span>
-                <h2 id="precoVivoPT">--</h2>
+    </div>
+
+    <!-- KPI ROW -->
+    <div class="hero-kpis">
+
+        <div class="hero-card green">
+            <span>Vivo PT</span>
+            <h2 id="precoVivoPT">--</h2>
+        </div>
+
+        <div class="hero-card blue">
+            <span>Carcaça PT</span>
+            <h2 id="precoCarcacaPT">--</h2>
+        </div>
+
+        <div class="hero-card purple">
+            <span>Estado Mercado</span>
+            <h2 id="estadoMercado">Bullish</h2>
+        </div>
+
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="dashboard-grid">
+
+        <!-- BIG CHART -->
+        <div class="panel chart-panel">
+
+            <div class="panel-header">
+                <h3>Evolução de Mercado</h3>
+
+                <div class="ranges">
+                    <button>1M</button>
+                    <button>3M</button>
+                    <button>6M</button>
+                    <button>YTD</button>
+                    <button>ALL</button>
+                </div>
             </div>
 
-            <div class="kpi">
-                <span>Carcaça PT</span>
-                <h2 id="precoCarcacaPT">--</h2>
-            </div>
-
+            <canvas id="graficoPrecos"></canvas>
 
         </div>
 
-        <!-- GRID -->
-        <div class="grid">
-<div class="card full">
-    <h3>Leitura de Mercado</h3>
-    <p id="textoMercado"></p>
-    <div id="leituraMercado" class="market-reading"></div>
-</div>
-            <!-- CHART -->
-            <div class="card big">
-                <h3>Evolução de Preços</h3>
-                <canvas id="graficoPrecos"></canvas>
+        <!-- SIDE WIDGETS -->
+        <div class="side-widgets">
+
+            <div class="widget">
+                <h4>Pressão Mercado</h4>
+                <div class="widget-value" id="scoreMercado">74%</div>
             </div>
-<div class="card full">
-    <h3>Previsão de Mercado</h3>
-    <div id="previsaoFutura"></div>
-</div>
-            <!-- DRIVERS -->
-            <div class="card">
-                <h3>Drivers</h3>
-                <div class="driver">
-                    Preços
-                    <div class="bar"><div class="fill" style="width:70%"></div></div>
-                </div>
+
+            <div class="widget">
+                <h4>Previsão</h4>
+                <div id="previsaoFutura"></div>
+            </div>
+
+            <div class="widget">
+                <h4>Drivers</h4>
+
                 <div class="driver">
                     Procura
-                    <div class="bar"><div class="fill" style="width:60%"></div></div>
+                    <div class="bar">
+                        <div class="fill" style="width:70%"></div>
+                    </div>
                 </div>
-            </div>
-<div class="card full">
-    <h3>Registo Semanal de Preços</h3>
 
-    <label>Data</label>
-    <input id="semana" type="text" placeholder="Ex: 2026-W14">
+                <div class="driver">
+                    Exportações
+                    <div class="bar">
+                        <div class="fill" style="width:58%"></div>
+                    </div>
+                </div>
 
-    <label>Tipo</label>
-    <select id="tipoPreco">
-        <option value="carcaca">Carcaça</option>
-        <option value="vivo">Vivo</option>
-    </select>
+                <div class="driver">
+                    Custo Ração
+                    <div class="bar">
+                        <div class="fill red" style="width:82%"></div>
+                    </div>
+                </div>
 
-    <label>Preço (€/kg)</label>
-    <input id="valorPreco" type="number" step="0.01">
-
-    <button onclick="guardarPreco()">Guardar</button>
-</div>
-            <!-- SIMULADOR -->
-            <div class="card full">
-                <h3>Simulador</h3>
-
-                <input id="animais" type="number" value="30">
-                <input id="peso" type="number" value="600">
-                <input id="rendimento" type="number" value="58">
-
-                <button onclick="simular()">Simular</button>
-
-                <div id="resultado"></div>
             </div>
 
         </div>
 
-    </main>
+        <!-- MARKET AI -->
+        <div class="panel market-panel">
+
+            <h3>Leitura IA de Mercado</h3>
+
+            <div id="leituraMercado" class="market-reading"></div>
+
+        </div>
+
+        <!-- INPUT PANEL -->
+        <div class="panel input-panel">
+
+            <h3>Registo Semanal</h3>
+
+            <label>Semana</label>
+            <input id="semana" type="text" placeholder="2026-W20">
+
+            <label>Tipo</label>
+            <select id="tipoPreco">
+                <option value="carcaca">Carcaça</option>
+                <option value="vivo">Vivo</option>
+            </select>
+
+            <label>Preço</label>
+            <input id="valorPreco" type="number" step="0.01">
+
+            <button onclick="guardarPreco()">Guardar Mercado</button>
+
+        </div>
+
+    </div>
+
+</main>
 
 </div>
 
