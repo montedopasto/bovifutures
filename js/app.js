@@ -105,7 +105,7 @@ function calcularPrevisao(){
 
  return previsao;
 }
-function guardarPreco(){
+async function guardarPreco(){
 
     const semana = document.getElementById("semana").value;
     const tipo = document.getElementById("tipoPreco").value;
@@ -116,21 +116,20 @@ function guardarPreco(){
         return;
     }
 
-    let historico = JSON.parse(localStorage.getItem("precos")) || [];
+    const dados = {
+        semana,
+        tipo,
+        valor
+    };
 
-    historico.push({
-    semana: semana,
-    tipo: tipo,
-    valor: valor
-});
-
-    localStorage.setItem("precos", JSON.stringify(historico));
+    await fetch("https://script.google.com/macros/s/AKfycbwkvrOOnYAmesi1UXpUuc4D_osgPZzdYgF4WD6T6uISGj-BZUsINYv6uwfbD4tbhz5klA/exec", {
+        method: "POST",
+        body: JSON.stringify(dados)
+    });
 
     alert("Preço guardado com sucesso!");
 
-   carregarGrafico();
-atualizarKPIs();
-renderPrevisao();
+    carregarDados();
 }
 function carregarGrafico(){
 
